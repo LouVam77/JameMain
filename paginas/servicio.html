@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jame Maintenance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <link href="hola.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js' 
+
+    import { getFirestore, collection, query, where, getDocs, addDoc } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js' 
+
+    
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyC3oDArO2Yolnm8wvfrP6khPXsPmkss7NE",
+      authDomain: "jamemain-9145d.firebaseapp.com",
+      projectId: "jamemain-9145d",
+      storageBucket: "jamemain-9145d.appspot.com",
+      messagingSenderId: "48528285230",
+      appId: "1:48528285230:web:26e715d8e9f099be68c9bf",
+      measurementId: "G-7PF7DM9J2N"
+    };
+
+    // Initialize Firebase
+    //const databaseURL = "https://jamemain-9145d-default-rtdb.firebaseio.com/";
+    //const app = initializeApp({ databaseURL });
+    const app = initializeApp(firebaseConfig);
+    
+    const buttonEnviar = document.querySelector("#btnEnviar");
+
+    buttonEnviar.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const db = getFirestore(app);
+      const dbRef = collection(db, "users");
+
+      var nombre = document.getElementById("nombre").value;
+      var telefono = document.getElementById("telefono").value;
+      var direccion = document.getElementById("direccion").value;
+      var descripcion = document.getElementById("descripcion").value;
+      
+      if (nombre.trim() === "" || telefono.trim() === "" || direccion.trim() === "" || descripcion.trim() === "") {
+        Swal.fire({
+          icon: 'error',
+          title: 'Campos vacios...',
+          text: 'Asegurate de haberlos llenado todos !'
+        })
+        return;      
+      };
+
+      addDoc(dbRef, {
+        'nombre': nombre,
+        'telefono': telefono,
+        'direccion': direccion,
+        'descripcion': descripcion
+      }).then(docRef => {
+          console.log("Document has been added successfully");
+
+        Swal.fire(
+          'Enviado!',
+          '¡Gracias por tu solicitud, nos pondremos en contacto contigo pronto.',
+          'success'
+        );
+
+        document.getElementById("nombre").value = "";
+        document.getElementById("telefono").value = "";
+        document.getElementById("direccion").value = "";
+        document.getElementById("descripcion").value = "";
+      }).catch(error => {
+          console.log(error);
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <img src="Imagenes/logo.png"  class="logo">
+    <ul class="paginas">
+      <li><a class="quieto" href="hola.html" target="_parent">Inicio</a></li>
+      <li><a class="quieto" href="servicio.html" target="_parent">Servicio</a></li>
+      <li><a class="quieto" href="quienes-somos.html" target="_parent">¿Quiènes somos?</a></li>
+    </ul>
+      <div class="todas-redes">
+        <a href="https://instagram.com/maintenance123z?igshid=MzNlNGNkZWQ4Mg=="><img class="redes" src="Imagenes/instagram.png"></a>
+        <a href="https://www.facebook.com/profile.php?id=100094338481289&mibextid=ZbWKwL"><img class="redes" src="Imagenes/facebook.png"></a>
+        <a href="jamemaintenance@gmail.com"><img class="redes" src="Imagenes/correo-electronico.png"></a>
+      </div>
+  </nav>
+<div class="formula">
+  <div class="uni">
+     <h1>Solicitar Servicio</h1>
+  </div>
+  <form id="servicio">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" required>
+
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" id="telefono" required>
+
+    <label for="direccion">Dirección:</label>
+    <input type="text" id="direccion" required>
+
+    <label for="descripcion">Descripción del problema:</label>
+    <textarea id="descripcion" required></textarea>
+
+    <button type="button" id="btnEnviar">Enviar</button>
+  </form>
+</div>
+</body>
+</html>
