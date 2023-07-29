@@ -11,6 +11,7 @@ body {
 }
 
 .fondoprincipal {
+  height: 200%;
   background-image: url("Imagenes/Jame.jpg");
   background-size: cover;
   background-repeat: repeat-y;
@@ -41,10 +42,10 @@ footer {
   align-items: end;
   position: fixed;
   z-index: -1;
+  left: 0;
   bottom: 0;
-  right: 0;
-  height: 40%;
-  width: 40%;
+  height: 50%;
+  width: 50%;
 }
 
 .nosotros {
@@ -198,15 +199,15 @@ input[type="submit"]:hover {
   }
   
   .redes {
-    width: 6vw;
-    height: 6vw;
+    width: 5vw;
+    height: 5vw;
   }
   
   nav .todas-redes {
     display: flex;
-    margin-right: 15vw;
-    margin-left: 3vw;
-    justify-content: space-between;
+    margin-right: 2vw;
+    margin-left: 2vw;
+    justify-content: space-evenly;
   }
   
   h1, p, label {
@@ -215,7 +216,7 @@ input[type="submit"]:hover {
   
   .logo {
     margin-left: -10vw;
-    width: max(150px, 14vw);
+   
   }
   
   nav ul {
@@ -227,27 +228,23 @@ input[type="submit"]:hover {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    background-color: rgb(255, 255, 255);
   }
 
   nav ul {
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    height: 110px;
+    background-color: transparent;
+    width: 50%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
   }
-  
+
   li .quieto {
     color: #8d8d8ddc;
+    font-size: 12px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bolder;
     text-decoration: none;
-    padding: 2vw;
+  
   }
   
   li a:hover {
@@ -276,6 +273,7 @@ input[type="submit"]:hover {
   }
 
   .quienessomos {
+    margin-top: 10vw;
     width: 100%;
     height: 500vw;
     display: block !important;
@@ -328,6 +326,7 @@ input[type="submit"]:hover {
   }
   
   .formula {
+    margin-top: 30vw;
     width: 100%;
   }
 
